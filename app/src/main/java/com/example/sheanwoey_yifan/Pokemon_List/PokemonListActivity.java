@@ -1,6 +1,7 @@
 package com.example.sheanwoey_yifan.Pokemon_List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +39,6 @@ public class PokemonListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pokemon_list_activity);
         pokemonList = findViewById(R.id.pokemonList);
-
             apiRequest("");
     }
 

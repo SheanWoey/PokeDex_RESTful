@@ -1,20 +1,21 @@
 package com.example.sheanwoey_yifan.Pokemon_List;
 
 import android.content.Context;
-import android.nfc.Tag;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sheanwoey_yifan.Model.PokeList;
+import com.example.sheanwoey_yifan.Pokemon_Detail.PokeDetailActivity;
 import com.example.sheanwoey_yifan.R;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
     // binds the data to the TextView in each cell
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Log.d(TAG, "Adapter Run: "+ TAG);
         Glide.with(context).load(pokeList.get(position).getIcon()).into(holder.pokeIcon);
         holder.pokeName.setText(pokeList.get(position).getName());
@@ -57,6 +58,16 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         else {
             holder.pokeType2.setVisibility(View.INVISIBLE);
         }
+        holder.pokeContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, PokeDetailActivity.class);
+                intent.putExtra("pokeId",position);
+                intent.putExtra("pokeIcon",pokeList.get(position).getIcon());
+                context.startActivity(intent);
+            }
+        });
     }
 
     // total number of cells
@@ -70,6 +81,7 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView pokeIcon;
         TextView pokeName, pokeType1,pokeType2;
+        ConstraintLayout pokeContainer;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -77,12 +89,15 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
             pokeName = itemView.findViewById(R.id.pokeName);
             pokeType1 = itemView.findViewById(R.id.pokeType1);
             pokeType2 = itemView.findViewById(R.id.pokeType2);
+            pokeContainer= itemView.findViewById(R.id.pokeContainer);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) {
+                mClickListener.onItemClick(view, getAdapterPosition());
+            }
         }
     }
 
