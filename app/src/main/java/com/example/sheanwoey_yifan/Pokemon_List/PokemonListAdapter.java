@@ -14,10 +14,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sheanwoey_yifan.Model.PokeList;
+import com.example.sheanwoey_yifan.Model.PokeDetail;
 import com.example.sheanwoey_yifan.Pokemon_Detail.PokeDetailActivity;
 import com.example.sheanwoey_yifan.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -27,13 +28,13 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    private ArrayList<PokeList> pokeList;
+    private ArrayList<PokeDetail> pokeDetails;
     private Context context;
 
     // data is passed into the constructor
-    PokemonListAdapter(Context context, ArrayList<PokeList> pokeList) {
+    PokemonListAdapter(Context context, ArrayList<PokeDetail> pokeDetails) {
         this.mInflater = LayoutInflater.from(context);
-        this.pokeList = pokeList;
+        this.pokeDetails = pokeDetails;
     }
 
     // inflates the cell layout from xml when needed
@@ -49,11 +50,11 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Log.d(TAG, "Adapter Run: "+ TAG);
-        Glide.with(context).load(pokeList.get(position).getIcon()).into(holder.pokeIcon);
-        holder.pokeName.setText(pokeList.get(position).getName());
-        holder.pokeType1.setText(pokeList.get(position).getType()[0]);
-        if (pokeList.get(position).getType()[1]!="none") {
-            holder.pokeType2.setText(pokeList.get(position).getType()[1]);
+        Glide.with(context).load(pokeDetails.get(position).getSprite()).into(holder.pokeIcon);
+        holder.pokeName.setText(pokeDetails.get(position).getName());
+        holder.pokeType1.setText(pokeDetails.get(position).getTypes()[0]);
+        if (pokeDetails.get(position).getTypes()[1]!="none") {
+            holder.pokeType2.setText(pokeDetails.get(position).getTypes()[1]);
         }
         else {
             holder.pokeType2.setVisibility(View.INVISIBLE);
@@ -63,8 +64,8 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, PokeDetailActivity.class);
-                intent.putExtra("pokeId",position);
-                intent.putExtra("pokeIcon",pokeList.get(position).getIcon());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                intent.putExtra("pokemon", (Serializable) pokeDetails.get(position));
                 context.startActivity(intent);
             }
         });
@@ -73,7 +74,7 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
     // total number of cells
     @Override
     public int getItemCount() {
-        return pokeList.size();
+        return pokeDetails.size();
     }
 
 
@@ -101,8 +102,8 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         }
     }
 
-    PokeList getItem(int id) {
-        return pokeList.get(id);
+    PokeDetail getItem(int id) {
+        return pokeDetails.get(id);
     }
 
     void setClickListener(ItemClickListener itemClickListener) {
@@ -111,5 +112,11 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public void update(ArrayList<PokeDetail> pokeDetails) {
+        this.pokeDetails.clear();
+        this.pokeDetails.addAll(pokeDetails);
+        notifyDataSetChanged();
     }
 }

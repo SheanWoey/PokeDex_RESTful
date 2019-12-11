@@ -1,14 +1,20 @@
 package com.example.sheanwoey_yifan.Pokemon_List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.example.sheanwoey_yifan.Model.PokeList;
+import com.example.sheanwoey_yifan.AutoFitGridLayoutManager;
+import com.example.sheanwoey_yifan.Model.PokeDetail;
+import com.example.sheanwoey_yifan.Model.PokeEvolution;
+import com.example.sheanwoey_yifan.Model.PokeMove;
 import com.example.sheanwoey_yifan.R;
 
 import org.json.JSONArray;
@@ -17,88 +23,152 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 
 public class PokemonListActivity extends AppCompatActivity {
 
     private static final String TAG = PokemonListActivity.class.getName();
-    private static final String BASE_URL = "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
+    private static String BASE_URL = "http://demo4987693.mockable.io/pokemon";
 
     public RecyclerView pokemonList;
-    public PokemonListAdapter pokemonListAdapter;
-    public static ArrayList<PokeList> pokeLists = new ArrayList<>();
+    public static ArrayList<PokeDetail> pokeLists = new ArrayList<>();
+    private PokemonListAdapter pokemonListAdapter;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pokemon_list_activity);
         pokemonList = findViewById(R.id.pokemonList);
-            apiRequest("");
+
+        SharedPreferences sharedpreferences= getSharedPreferences("Base_Url", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("PokeList_Url","http://demo4987693.mockable.io/pokemon");
+        editor.commit();
+
+        new GetPokeList().execute();
     }
 
-    private void apiRequest(String apiUrl) {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(BASE_URL+apiUrl)
-                .build();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d(TAG,"Fail");
-                e.printStackTrace();
+    private class GetPokeList extends AsyncTask<Void, Void, ArrayList<PokeDetail>> {
+
+        ArrayList<PokeDetail> list;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            pDialog = new ProgressDialog(PokemonListActivity.this);
+            pDialog.setIndeterminate(false);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+
+        @Override
+        protected ArrayList<PokeDetail> doInBackground(Void... arg0) {
+
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(BASE_URL)
+                    .build();
+
+            try {
+                String myResponse = client.newCall(request).execute().body().string();
+                list = JsonConvert(myResponse);
+            } catch (IOException e) {
+                Log.d(TAG, "Fail" + e.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        "Json parsing error: " + e.getMessage(),
+                        Toast.LENGTH_LONG)
+                        .show();
             }
+            return list;
+        }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final String myResponse = response.body().string();
+        @Override
+        protected void onPostExecute(ArrayList<PokeDetail> result) {
+            super.onPostExecute(result);
 
-                    PokemonListActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            JsonConvert(myResponse);
-                        }
-                    });
-                }
-            }
-        });
-    }
+            if (pDialog.isShowing())
+                pDialog.dismiss();
 
-    public void JsonConvert(String myResponse) {
-        try {
-            PokeList pokeListItem;
-            JSONObject responseObject = (JSONObject) new JSONTokener(myResponse).nextValue();
-            JSONArray responseArray = responseObject.getJSONArray("pokemon");
-            for (int i = 0; i < responseArray.length() ; i++) {
-                String name = responseArray.getJSONObject(i).getString("name");
-                String sprite = responseArray.getJSONObject(i).getString("img");
-                JSONArray types = responseArray.getJSONObject(i).getJSONArray("type");
-                if(types.length()==1) {
-                    pokeListItem = new PokeList(name,sprite, new String[]{types.get(0).toString(), "none"});
-                }else {
-                    pokeListItem = new PokeList(name,sprite, new String[]{types.get(0).toString(), types.get(1).toString()});
-                }
-                pokeLists.add(pokeListItem);
-            }
-            initRecyclerView();
-        } catch (JSONException e) {
-            e.printStackTrace();
+            pokeLists = result;
+            Log.d(TAG, "pokeLists :" + pokeLists.size());
+
+            pokemonList.setLayoutManager(new AutoFitGridLayoutManager(getApplicationContext(), 280));
+            pokemonList.setHasFixedSize(true);
+            pokemonListAdapter = new PokemonListAdapter(getApplicationContext(), pokeLists);
+            pokemonList.setAdapter(pokemonListAdapter);
+            // do we need to notify the RecyclerView that the list has been updated?
+            pokemonListAdapter.notifyDataSetChanged();
+
         }
     }
 
-    private void initRecyclerView() {
-        Log.d(TAG,"pokeLists :"+ pokeLists.toString());
-        pokemonList.setLayoutManager(new GridLayoutManager(this, 3));
-        pokemonList.setHasFixedSize(true);
-        pokemonListAdapter = new PokemonListAdapter(this, pokeLists);
-        pokemonList.setAdapter(pokemonListAdapter);
+    public ArrayList<PokeDetail> JsonConvert(String myResponse) {
+
+        ArrayList<PokeDetail> list = new ArrayList<>();
+        try {
+            PokeDetail pokeDetail;
+            JSONObject responseObject = (JSONObject) new JSONTokener(myResponse).nextValue();
+            JSONArray responseArray = responseObject.getJSONArray("pokemon");
+            for (int i = 0; i < responseArray.length(); i++) {
+                int id = responseArray.getJSONObject(i).getInt("id");
+                String name = responseArray.getJSONObject(i).getString("name");
+
+                JSONArray typesArray = responseArray.getJSONObject(i).getJSONArray("types");
+                String[] types;
+                if (typesArray.length() == 1) {
+                    types= new String[]{typesArray.get(0).toString(), "none"};
+                } else {
+                    types =  new String[]{typesArray.get(0).toString(), typesArray.get(1).toString()};
+                }
+
+                String sprite = responseArray.getJSONObject(i).getString("sprite");
+                String description = responseArray.getJSONObject(i).getString("description");
+                int hp = responseArray.getJSONObject(i).getInt("hp");
+                int attack = responseArray.getJSONObject(i).getInt("attack");
+                int defense = responseArray.getJSONObject(i).getInt("defense");
+                int special_attack = responseArray.getJSONObject(i).getInt("special_attack");
+                int special_defense = responseArray.getJSONObject(i).getInt("special_defense");
+                int speed = responseArray.getJSONObject(i).getInt("speed");
+
+                ArrayList<PokeMove> pokeMoveList = new ArrayList<>();
+                JSONArray movesArray = responseArray.getJSONObject(i).getJSONArray("moves");
+                for (int j = 0; j < movesArray.length(); j++) {
+                    String moveName = movesArray.getJSONObject(j).getString("name");
+                    String accuracy = movesArray.getJSONObject(j).getString("accuracy");
+                    String power = movesArray.getJSONObject(j).getString("power");
+                    String pp = movesArray.getJSONObject(j).getString("pp");
+                    String damageClass = movesArray.getJSONObject(j).getString("category");
+                    String element = movesArray.getJSONObject(j).getString("type");
+                    String lvl = movesArray.getJSONObject(j).getString("method");
+                    PokeMove pokeMove = new PokeMove(moveName,pp,accuracy,damageClass,element,power,lvl);
+                    pokeMoveList.add(pokeMove);
+                }
+                ArrayList<PokeEvolution> pokeEvolutions = new ArrayList<>();
+                JSONArray evolutionArray = responseArray.getJSONObject(i).getJSONArray("evolutions");
+                for (int j = 0; j < evolutionArray.length(); j++) {
+                    int id2 = evolutionArray.getJSONObject(j).getInt("id");
+                    String name2 = evolutionArray.getJSONObject(j).getString("name");
+                    String icon = sprite;
+                    PokeEvolution pokeMove = new PokeEvolution(id2,name2,icon);
+                    pokeEvolutions.add(pokeMove);
+                }
+                pokeDetail = new PokeDetail(id,name,types,sprite,description,pokeMoveList,pokeEvolutions,hp,defense,attack,speed,special_attack,special_defense);
+                list.add(pokeDetail);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

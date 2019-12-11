@@ -1,20 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/text_margin"
+    >
 
-    <TextView
-        android:id="@+id/text_notifications"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/round_square">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="Base Stats"
+            android:textColor="@color/White" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelHp"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="HP"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barHp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueHp"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelAttack"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="Attack"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barAttack"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueAttack"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelDefense"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="Defense"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barDefense"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueDefense"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelSpecialAttack"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="Special Attack"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barSpecialAttack"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueSpecialAttack"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelSpecialDefense"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="Special Defense"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barSpecialDefense"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueSpecialDefense"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/labelSpeed"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0"
+                android:text="Speed"
+                android:textColor="@color/White" />
+
+            <ProgressBar
+                android:id="@+id/barSpeed"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:progress="35"
+                android:progressTint="@color/White" />
+
+            <TextView
+                android:id="@+id/valueSpeed"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:text="255"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

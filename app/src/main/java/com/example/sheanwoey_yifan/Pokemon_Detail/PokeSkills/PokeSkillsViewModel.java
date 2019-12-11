@@ -1,16 +1,16 @@
-package com.example.sheanwoey_yifan.Pokemon_Detail.ui.pokeInfo;
+package com.example.sheanwoey_yifan.Pokemon_Detail.PokeSkills;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class PokeInfoViewModel extends ViewModel {
+public class PokeSkillsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public PokeInfoViewModel() {
+    public PokeSkillsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {
