@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_info">
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.example.sheanwoey_yifan.Pokemon_Detail.pokeInfo.PokeInfoFragment"
+        android:label="@string/title_info"
+        tools:layout="@layout/fragment_info" />
+
+    <fragment
+        android:id="@+id/navigation_skills"
+        android:name="com.example.sheanwoey_yifan.Pokemon_Detail.PokeSkills.PokeSkillsFragment"
+        android:label="@string/title_skills"
+        tools:layout="@layout/fragment_skill" />
+
+</navigation>

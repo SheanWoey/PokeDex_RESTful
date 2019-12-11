@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sheanwoey_yifan">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -10,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Pokemon_List.PokemonListActivity"></activity>
+        <activity
+            android:name=".Pokemon_Detail.PokeDetailActivity"
+            android:label="@string/title_activity_poke_detail"></activity>
+        <activity android:name=".Pokemon_List.PokemonListActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

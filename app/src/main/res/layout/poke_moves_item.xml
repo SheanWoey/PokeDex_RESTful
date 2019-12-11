@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:columnCount="5">
+
+
+    <TextView
+        android:id="@+id/skillName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="6dp"
+        android:text="@string/sample"
+        
+        android:textColor="@color/White"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/skillTYPE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="6dp"
+        android:text="@string/sample"
+        
+        android:textColor="@color/White"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/skillPP"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_columnWeight="1"
+        android:layout_margin="6dp"
+        android:text="@string/title_activity_maps"
+        
+        android:textColor="@color/White"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/skillATK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="6dp"
+        android:text="@string/title_activity_maps"
+        
+        android:textColor="@color/White"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/skillACC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="6dp"
+        android:text="@string/title_activity_maps"
+        
+        android:textColor="@color/White"
+        android:textSize="16dp" />
+
+
+</GridLayout>
