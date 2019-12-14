@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_rowWeight="1">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/round_square"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
@@ -13,83 +13,94 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Moves Learned"
+        android:textSize="24sp"
         android:textColor="@color/White"
         app:layout_constraintBottom_toTopOf="@+id/pokeMovesTable" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/White" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="8dp"
         android:id="@+id/pokeMovesTable"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/skillLV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="LV"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/skillName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Name"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/skillLV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:id="@+id/skillPP"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:text="PP"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/skillATK"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/skillATK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Power"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/skillACC"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.15" />
+
+        <TextView
+            android:id="@+id/skillACC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Acc"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokeMoves"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="5"
-            >
-
-            <TextView
-                android:id="@+id/skillName"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Name"
-                android:layout_width="100dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:textColor="@color/White"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/skillTYPE"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Type"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:textColor="@color/White"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/skillPP"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:text="PP"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:textColor="@color/White"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/skillATK"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Power"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:textColor="@color/White"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/skillACC"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Accuracy"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:textColor="@color/White"
-                android:textSize="16dp" />
-
-        </GridLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pokeMoves"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </LinearLayout>
