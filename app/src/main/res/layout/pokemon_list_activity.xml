@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Pokemon_List.PokemonListActivity"
     android:orientation="horizontal"
-    android:background="@drawable/bg">
+    android:background="@color/Dark">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemonList"

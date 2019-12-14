@@ -23,7 +23,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -32,7 +31,7 @@ import okhttp3.Request;
 public class PokemonListActivity extends AppCompatActivity {
 
     private static final String TAG = PokemonListActivity.class.getName();
-    private static String BASE_URL = "http://demo4987693.mockable.io/pokemon";
+    private static String BASE_URL = "https://demo4987693.mockable.io/pokemon";
 
     public RecyclerView pokemonList;
     public static ArrayList<PokeDetail> pokeLists = new ArrayList<>();
@@ -128,7 +127,7 @@ public class PokemonListActivity extends AppCompatActivity {
                 if (typesArray.length() == 1) {
                     types= new String[]{typesArray.get(0).toString(), "none"};
                 } else {
-                    types =  new String[]{typesArray.get(0).toString(), typesArray.get(1).toString()};
+                    types =  new String[]{typesArray.get(1).toString(), typesArray.get(0).toString()};
                 }
 
                 String sprite = responseArray.getJSONObject(i).getString("sprite");
@@ -158,7 +157,7 @@ public class PokemonListActivity extends AppCompatActivity {
                 for (int j = 0; j < evolutionArray.length(); j++) {
                     int id2 = evolutionArray.getJSONObject(j).getInt("id");
                     String name2 = evolutionArray.getJSONObject(j).getString("name");
-                    String icon = sprite;
+                    String icon = "https://www.serebii.net/pokemon/art/"+String.format("%03d", id2)+".png";
                     PokeEvolution pokeMove = new PokeEvolution(id2,name2,icon);
                     pokeEvolutions.add(pokeMove);
                 }

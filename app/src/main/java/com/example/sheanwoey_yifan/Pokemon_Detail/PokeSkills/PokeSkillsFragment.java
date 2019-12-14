@@ -55,5 +55,4 @@ public class PokeSkillsFragment extends Fragment {
 
         return view;
     }
-
 }
