@@ -1,21 +1,15 @@
 package com.example.sheanwoey_yifan.Pokemon_Detail.PokeSkills;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.sheanwoey_yifan.Model.PokeMove;
-import com.example.sheanwoey_yifan.Pokemon_Detail.PokeDetailActivity;
 import com.example.sheanwoey_yifan.Pokemon_List.PokemonListActivity;
 import com.example.sheanwoey_yifan.R;
 
@@ -54,6 +48,8 @@ public class PokeSkillsAdapter extends RecyclerView.Adapter<PokeSkillsAdapter.Vi
         holder.skillATK.setText(pokeMoves.get(position).getPower());
         holder.skillACC.setText(pokeMoves.get(position).getAccuracy());
         holder.skillTYPE.setText(pokeMoves.get(position).getElement());
+        holder.skillCLASS.setText(pokeMoves.get(position).getDamageClass());
+        holder.skillLV.setText(pokeMoves.get(position).getLvl());
     }
 
     // total number of cells
@@ -65,7 +61,7 @@ public class PokeSkillsAdapter extends RecyclerView.Adapter<PokeSkillsAdapter.Vi
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView skillName, skillPP,skillATK,skillACC,skillTYPE,skillCLASS;
+        TextView skillLV, skillName, skillPP,skillATK,skillACC,skillTYPE,skillCLASS;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +70,8 @@ public class PokeSkillsAdapter extends RecyclerView.Adapter<PokeSkillsAdapter.Vi
             skillATK = itemView.findViewById(R.id.skillATK);
             skillACC = itemView.findViewById(R.id.skillACC);
             skillTYPE= itemView.findViewById(R.id.skillTYPE);
+            skillCLASS = itemView.findViewById(R.id.skillCLASS);
+            skillLV = itemView.findViewById(R.id.skillLV);
             itemView.setOnClickListener(this);
         }
 
@@ -88,4 +86,9 @@ public class PokeSkillsAdapter extends RecyclerView.Adapter<PokeSkillsAdapter.Vi
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+
+    public void clear() {
+        pokeMoves.clear();
+    }
+
 }

@@ -1,65 +1,154 @@
-<?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pokeMovesTable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:columnCount="5">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:padding="8dp"
+    android:background="@drawable/item_skill">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/skillLV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="LV"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/skillName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Name"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/skillLV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:id="@+id/skillPP"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:text="PP"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/skillATK"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.1" />
+
+        <TextView
+            android:id="@+id/skillATK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Power"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/skillACC"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.15" />
+
+        <TextView
+            android:id="@+id/skillACC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Acc"
+            android:textAlignment="center"
+            android:textColor="@color/White"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.15" />
 
 
-    <TextView
-        android:id="@+id/skillName"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_margin="6dp"
-        android:text="@string/sample"
-        
-        android:textColor="@color/White"
-        android:textSize="16dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_skill"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skillPP"
+            app:layout_constraintWidth_percent="0.5">
 
-    <TextView
-        android:id="@+id/skillTYPE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_margin="6dp"
-        android:text="@string/sample"
-        
-        android:textColor="@color/White"
-        android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TYPE: "
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp"
 
-    <TextView
-        android:id="@+id/skillPP"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_columnWeight="1"
-        android:layout_margin="6dp"
-        android:text="@string/title_activity_maps"
-        
-        android:textColor="@color/White"
-        android:textSize="16dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.4" />
 
-    <TextView
-        android:id="@+id/skillATK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_margin="6dp"
-        android:text="@string/title_activity_maps"
-        
-        android:textColor="@color/White"
-        android:textSize="16dp" />
+            <TextView
+                android:id="@+id/skillTYPE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="TYPE"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintWidth_percent="0.6" />
 
-    <TextView
-        android:id="@+id/skillACC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:layout_margin="6dp"
-        android:text="@string/title_activity_maps"
-        
-        android:textColor="@color/White"
-        android:textSize="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/item_skill"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skillPP"
+            app:layout_constraintWidth_percent="0.5">
 
-</GridLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="CLASS: "
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp"
+
+                app:layout_constraintEnd_toStartOf="@+id/skillCLASS"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <TextView
+                android:id="@+id/skillCLASS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:text="CLASS"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

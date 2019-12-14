@@ -2,7 +2,10 @@ package com.example.sheanwoey_yifan.Pokemon_Detail;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ import com.example.sheanwoey_yifan.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,6 +26,7 @@ public class PokeDetailActivity extends AppCompatActivity {
 
     private static final String TAG = PokeDetailActivity.class.getSimpleName();
     private PokeDetail pokeDetail;
+    private int colorType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +48,89 @@ public class PokeDetailActivity extends AppCompatActivity {
 
         TextView name = findViewById(R.id.pokeName);
         name.setText(pokeDetail.getName());
+
+        ConstraintLayout container = findViewById(R.id.container);
+
+        colorType =colorChangeType();
+        int[] colors = {Color.BLACK, Color.parseColor(getResources().getString(colorType)), Color.BLACK};
+
+        GradientDrawable gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.RECTANGLE);
+        gd.setColors(colors);
+
+        container.setBackground(gd);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() == 0) {
+            super.onBackPressed();
+        }
+        else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    public int colorChangeType() {
+        switch (pokeDetail.getTypes()[0]) {
+            case "grass":
+                return R.color.colorGrassType;
+
+            case "fire":
+                return R.color.colorFireType;
+
+            case "water":
+                return R.color.colorWaterType;
+
+            case "bug":
+                return R.color.colorBugType;
+
+            case "normal":
+                return R.color.colorNormalType;
+
+            case "poison":
+                return R.color.colorPoisonType;
+
+            case "electric":
+                return R.color.colorElectricType;
+
+            case "flying":
+                return R.color.colorFlyingType;
+
+            case "ground":
+                return R.color.colorGroundType;
+
+            case "fighting":
+                return R.color.colorFightingType;
+
+            case "psychic":
+                return R.color.colorPsychicType;
+
+            case "rock":
+                return R.color.colorRockType;
+
+            case "ghost":
+                return R.color.colorGhostType;
+
+            case "steel":
+                return R.color.colorSteelType;
+
+            case "ice":
+                return R.color.colorIceType;
+
+            case "dark":
+                return R.color.colorDarkType;
+
+            case "dragon":
+                return R.color.colorDragonType;
+
+            default:
+                return R.color.Pink;
+        }
     }
 }
