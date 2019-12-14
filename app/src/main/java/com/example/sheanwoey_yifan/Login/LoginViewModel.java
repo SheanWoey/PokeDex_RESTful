@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.sheanwoey_yifan.Model.LoginRepository;
-import com.example.sheanwoey_yifan.Model.Result;
 import com.example.sheanwoey_yifan.R;
 
 public class LoginViewModel extends ViewModel {

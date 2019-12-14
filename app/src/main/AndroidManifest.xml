@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Login.ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
             android:name=".Pokemon_Detail.PokeDetailActivity"
-            android:label="@string/title_activity_poke_detail"></activity>
+            android:label="@string/title_activity_poke_detail" />
         <activity android:name=".Pokemon_List.PokemonListActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
@@ -22,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.LoginActivity" />
     </application>
 
 </manifest>

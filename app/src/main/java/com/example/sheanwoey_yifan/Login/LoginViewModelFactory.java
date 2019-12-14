@@ -1,11 +1,9 @@
 package com.example.sheanwoey_yifan.Login;
 
-import androidx.annotation.NonNull;
+import android.content.Context;
+
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.sheanwoey_yifan.Model.LoginDataSource;
-import com.example.sheanwoey_yifan.Model.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -13,14 +11,20 @@ import com.example.sheanwoey_yifan.Model.LoginRepository;
  */
 public class LoginViewModelFactory implements ViewModelProvider.Factory {
 
-    @NonNull
+    private LoggedInUser user;
+    private Context context;
+
+
+    public LoginViewModelFactory(Context context, LoggedInUser user)
+    {
+        this.context = context;
+        this.user = user;
+    }
+
+
     @Override
-    @SuppressWarnings("unchecked")
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(LoginRepository.getInstance(new LoginDataSource()));
-        } else {
-            throw new IllegalArgumentException("Unknown ViewModel class");
-        }
+    public <T extends ViewModel> T create(Class<T> modelClass)
+    {
+        return (T) new LoginViewModel(context, user);
     }
 }

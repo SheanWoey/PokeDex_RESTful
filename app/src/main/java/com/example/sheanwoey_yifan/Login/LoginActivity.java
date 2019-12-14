@@ -2,6 +2,7 @@ package com.example.sheanwoey_yifan.Login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,10 +35,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        overridePendingTransition(0,0);
-        View relativeLayout=findViewById(R.id.login_container);
+        View relativeLayout=findViewById(R.id.activity_main);
         Animation animation= AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
         relativeLayout.startAnimation(animation);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE); // 0 - for private mode
+        SharedPreferences.Editor editor = pref.edit();
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -122,8 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome_text) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
+        String welcome = getString(R.string.welcome_text) +" "+ model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(LoginActivity.this, PokemonListActivity.class);
