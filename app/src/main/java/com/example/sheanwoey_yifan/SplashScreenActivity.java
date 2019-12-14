@@ -3,14 +3,15 @@ package com.example.sheanwoey_yifan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sheanwoey_yifan.Login.LoginActivity;
+import com.example.sheanwoey_yifan.Login.ui.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -19,16 +20,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.loading_screen);
 
-        Animation hold = AnimationUtils.loadAnimation(this, R.anim.hold);
-        final Animation translateScale = AnimationUtils.loadAnimation(this, R.anim.translate_scale);
+        final Animation rotate = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        final Animation fade_out = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         final ImageView splash_content = findViewById(R.id.header_icon);
+        final TextView textView = findViewById(R.id.welcomeText);
 
 
-        translateScale.setAnimationListener(new Animation.AnimationListener() {
+        rotate.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -36,10 +36,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (!isFirstAnimation) {
-                    splash_content.clearAnimation();
-                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                    splash_content.startAnimation(fade_out);
+                    textView.startAnimation(fade_out);
                 }
 
                 isFirstAnimation = true;
@@ -51,16 +49,20 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         });
 
-        hold.setAnimationListener(new Animation.AnimationListener() {
+        fade_out.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                splash_content.startAnimation(fade_out);
+                textView.startAnimation(fade_out);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                splash_content.clearAnimation();
-                splash_content.startAnimation(translateScale);
+                splash_content.setVisibility(View.GONE);
+                textView.setVisibility(View.GONE);
+                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
             }
 
             @Override
@@ -69,8 +71,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         });
 
-        splash_content.startAnimation(hold);
-
-
+        splash_content.startAnimation(rotate);
     }
 }

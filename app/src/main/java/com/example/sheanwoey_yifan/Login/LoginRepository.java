@@ -1,6 +1,4 @@
-package com.example.sheanwoey_yifan.Model;
-
-import com.example.sheanwoey_yifan.Login.LoggedInUser;
+package com.example.sheanwoey_yifan.Login;
 
 /**
  * Class that requests authentication and user information from the remote data source and
