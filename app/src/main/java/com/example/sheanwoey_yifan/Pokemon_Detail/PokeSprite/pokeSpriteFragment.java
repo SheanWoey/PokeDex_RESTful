@@ -38,6 +38,8 @@ public class pokeSpriteFragment extends Fragment {
         TextView textView = view.findViewById(R.id.pokeName);
         ImageView imageView = view.findViewById(R.id.pokeIcon2);
 
+        Glide.with(view).load(pokeDetail.getSprite()).into()
+
         return view;
     }
 

@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.sheanwoey_yifan.AutoFitGridLayoutManager;
 import com.example.sheanwoey_yifan.Model.PokeDetail;
@@ -37,6 +38,7 @@ public class PokemonListActivity extends AppCompatActivity {
     public static ArrayList<PokeDetail> pokeLists = new ArrayList<>();
     private PokemonListAdapter pokemonListAdapter;
     private ProgressDialog pDialog;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
