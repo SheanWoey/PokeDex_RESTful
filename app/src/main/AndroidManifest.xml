@@ -13,10 +13,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Login.ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"></activity>
         <activity
-            android:name=".Pokemon_Detail.PokeDetailActivity"
-            android:label="@string/title_activity_poke_detail" />
+            android:name=".Pokemon_Detail.PokeDetailActivity" />
         <activity android:name=".Pokemon_List.PokemonListActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>

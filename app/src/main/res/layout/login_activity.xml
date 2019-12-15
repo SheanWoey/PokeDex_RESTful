@@ -30,6 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/loginForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -77,10 +78,95 @@
                 android:layout_marginRight="16dp"
                 android:enabled="false"
                 android:text="Log in"
-                android:textColor="@color/Black" />
+                android:background="@drawable/button_toggle" />
+
+            <Button
+                android:id="@+id/toggleRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Register"
+                android:background="@drawable/button_enabled"/>
 
             <ProgressBar
                 android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/registerForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingLeft="8dp"
+            android:paddingTop="36dp"
+            android:paddingRight="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/header_icon"
+            tools:layout_editor_absoluteX="16dp">
+
+
+            <EditText
+                android:id="@+id/userRegister"
+                style="@style/RegistrationEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:hint="Username"
+                android:textColor="@color/WhiteSmoke"
+                android:textColorHint="@color/WhiteSmoke" />
+
+            <EditText
+                android:id="@+id/passRegister"
+                style="@style/RegistrationEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:drawableLeft="@drawable/ic_lock_black_24dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/WhiteSmoke"
+                android:textColorHint="@color/WhiteSmoke" />
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:enabled="false"
+                android:text="Register"
+                android:background="@drawable/button_toggle"
+                android:textColor="@color/Black" />
+
+            <Button
+                android:id="@+id/toggleLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Login"
+                android:background="@drawable/button_enabled"
+            android:textColor="@color/Black" />
+
+            <ProgressBar
+                android:id="@+id/loading2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
