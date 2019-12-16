@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -18,7 +20,10 @@ import com.example.sheanwoey_yifan.AutoFitGridLayoutManager;
 import com.example.sheanwoey_yifan.Model.PokeDetail;
 import com.example.sheanwoey_yifan.Model.PokeEvolution;
 import com.example.sheanwoey_yifan.Model.PokeMove;
+import com.example.sheanwoey_yifan.Pokemon_Team.PokeTeamActivity;
 import com.example.sheanwoey_yifan.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +31,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -51,9 +57,25 @@ public class PokemonListActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences= getSharedPreferences("Base_Url", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("PokeList_Url","http://demo4987693.mockable.io/pokemon");
+        editor.apply();
         editor.commit();
 
+        SharedPreferences user= getSharedPreferences("User", Context.MODE_PRIVATE);
+        Log.d(TAG,"user: "+user.getString("username","")+" password: "+ user.getString("password",""));
+
         new GetPokeList().execute();
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PokemonListActivity.this, PokeTeamActivity.class);
+                intent.putExtra("team", (Serializable) pokeLists);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                startActivity(intent);
+            }
+        });
     }
 
 

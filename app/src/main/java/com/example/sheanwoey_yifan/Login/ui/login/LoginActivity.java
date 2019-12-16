@@ -51,9 +51,10 @@ public class LoginActivity extends AppCompatActivity {
         if (pref.getString("username","").isEmpty()|| pref.getString("password","").isEmpty()) {
             editor.putString("username", "user");
             editor.putString("password", "password");
-        }
 
-        editor.commit();
+            editor.apply();
+            editor.commit();
+        }
 
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
