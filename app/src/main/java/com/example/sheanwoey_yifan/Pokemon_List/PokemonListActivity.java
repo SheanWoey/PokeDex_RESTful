@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -86,6 +88,7 @@ public class PokemonListActivity extends AppCompatActivity {
         ArrayList<PokeDetail> list;
 
         @Override
+
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
@@ -110,11 +113,14 @@ public class PokemonListActivity extends AppCompatActivity {
                 String myResponse = client.newCall(request).execute().body().string();
                 list = JsonConvert(myResponse);
             } catch (IOException e) {
+
                 Log.d(TAG, "Fail" + e.getMessage());
+
                 Toast.makeText(getApplicationContext(),
                         "Json parsing error: " + e.getMessage(),
                         Toast.LENGTH_LONG)
                         .show();
+
             }
             return list;
         }
