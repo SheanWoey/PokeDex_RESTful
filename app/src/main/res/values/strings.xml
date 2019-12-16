@@ -37,4 +37,7 @@
     <string name="name">Name</string>
     <string name="type">Type</string>
     <string name="download_image">Download Image</string>
+
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.sheanwoey_yifan.Pokemon_Team;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import com.bumptech.glide.Glide;
 import com.example.sheanwoey_yifan.Model.PokeDetail;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -154,7 +156,7 @@ public class PokeTeamActivity extends AppCompatActivity {
         team3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                longClick(3);
+                alertDialog(3);
                 return true;
             }
         });
@@ -163,6 +165,7 @@ public class PokeTeamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PokeTeamActivity.this, PokemonSelectorActivity.class);
+                intent.putExtra("team", (Serializable) pokeLists);
                 startActivityForResult(intent, TEXT_REQUEST);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
@@ -242,7 +245,46 @@ public class PokeTeamActivity extends AppCompatActivity {
         }
     }
 
-        public int colorChangeType(String type) {
+
+    public void teamDelete(int team) {
+            sharedPreferences.getInt("Team" + team, 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("Team" + team, 0);
+            editor.apply();
+            editor.commit();
+
+        team--;
+
+        TeamName.get(team).setText(R.string.pokeTeam_generate);
+        TeamType1.get(team).setText(R.string.title_home);
+        TeamType1.get(team).setBackgroundColor(Color.parseColor("#121212"));
+        TeamType2.get(team).setText(R.string.title_home);
+        TeamType2.get(team).setBackgroundColor(Color.parseColor("#121212"));
+        TeamType2.get(team).setVisibility(View.VISIBLE);
+
+        Glide.with(getApplicationContext()).load(R.drawable.loading).into(TeamIcon.get(team));
+    }
+
+    public void alertDialog(final int team) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Choose function");
+        builder.setPositiveButton(R.string.view, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                longClick(team);
+            }
+        });
+        builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                teamDelete(team);
+            }
+        });
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public int colorChangeType(String type) {
             switch (type.toLowerCase().trim()) {
                 case "grass":
                     return R.color.colorGrassType;
