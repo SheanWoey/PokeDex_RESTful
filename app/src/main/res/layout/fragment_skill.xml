@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Moves Learned"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textColor="@color/White"
         app:layout_constraintBottom_toTopOf="@+id/pokeMovesTable" />
 
@@ -38,7 +38,7 @@
             android:text="LV"
             android:textAlignment="center"
             android:textColor="@color/White"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.1" />
@@ -51,7 +51,7 @@
             android:text="Name"
             android:textAlignment="center"
             android:textColor="@color/White"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/skillLV"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.5" />
@@ -64,7 +64,7 @@
             android:text="PP"
             android:textAlignment="center"
             android:textColor="@color/White"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/skillATK"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.1" />
@@ -77,7 +77,7 @@
             android:text="Power"
             android:textAlignment="center"
             android:textColor="@color/White"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/skillACC"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.15" />
@@ -90,7 +90,7 @@
             android:text="Acc"
             android:textAlignment="center"
             android:textColor="@color/White"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.15" />

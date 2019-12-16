@@ -1,6 +1,7 @@
 package com.example.sheanwoey_yifan.Model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class PokeMove implements Serializable {
     private String moveName;
@@ -91,5 +92,12 @@ public class PokeMove implements Serializable {
                 ", power='" + power + '\'' +
                 ", lvl=" + lvl +
                 '}';
+    }
+
+    public static class SortbyLv implements Comparator<PokeMove> {
+        @Override
+        public int compare(PokeMove o1, PokeMove o2) {
+            return Integer.valueOf(o1.getLvl()).compareTo(Integer.valueOf(o2.getLvl()));
+        }
     }
 }

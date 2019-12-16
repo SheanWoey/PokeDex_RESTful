@@ -42,6 +42,20 @@ public class PokeInfoFragment extends Fragment {
         TextView desc = view.findViewById(R.id.description);
         desc.setText(pokeDetail.getDescription());
 
+        TextView name = view.findViewById(R.id.pokeName2);
+        name.setText(pokeDetail.getName());
+
+        TextView type= view.findViewById(R.id.pokeType1);
+        type.setText(pokeDetail.getTypes()[0]);
+
+        TextView type2= view.findViewById(R.id.pokeType2);
+        if(!pokeDetail.getTypes()[1].equals("none")) {
+            type2.setText(pokeDetail.getTypes()[1]);
+        }
+        else {
+            type2.setVisibility(View.GONE);
+        }
+
         TextView valueHp,valueAttack,valueDefense, valueSpecialAttack, valueSpecialDefense, valueSpeed;
         valueHp = view.findViewById(R.id.valueHp);
         valueAttack = view.findViewById(R.id.valueAttack);

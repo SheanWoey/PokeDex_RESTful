@@ -2,23 +2,22 @@ package com.example.sheanwoey_yifan.Pokemon_Team;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 import com.example.sheanwoey_yifan.Model.PokeDetail;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sheanwoey_yifan.Pokemon_Detail.PokeDetailActivity;
 import com.example.sheanwoey_yifan.R;
 
 import java.io.Serializable;
@@ -103,9 +102,17 @@ public class PokeTeamActivity extends AppCompatActivity {
                 Intent intent = new Intent(PokeTeamActivity.this, PokemonSelectorActivity.class);
                 intent.putExtra("team", (Serializable) pokeLists);
                 startActivityForResult(intent, TEXT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 teamModify =1 ;
                 teamModify(1);
+            }
+        });
+        team1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longClick(1);
+                return true;
             }
         });
 
@@ -116,9 +123,19 @@ public class PokeTeamActivity extends AppCompatActivity {
                 Intent intent = new Intent(PokeTeamActivity.this, PokemonSelectorActivity.class);
                 intent.putExtra("team", (Serializable) pokeLists);
                 startActivityForResult(intent, TEXT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
 
                 teamModify =2 ;
                 teamModify(2);
+            }
+        });
+
+        team2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longClick(2);
+                return true;
             }
         });
 
@@ -128,9 +145,17 @@ public class PokeTeamActivity extends AppCompatActivity {
                 Intent intent = new Intent(PokeTeamActivity.this, PokemonSelectorActivity.class);
                 intent.putExtra("team", (Serializable) pokeLists);
                 startActivityForResult(intent, TEXT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 teamModify=3;
                 teamModify(3);
+            }
+        });
+        team3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longClick(3);
+                return true;
             }
         });
 
@@ -139,10 +164,18 @@ public class PokeTeamActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PokeTeamActivity.this, PokemonSelectorActivity.class);
                 startActivityForResult(intent, TEXT_REQUEST);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                 teamModify=4;
                 teamModify(4);
 
+            }
+        });
+        team4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longClick(4);
+                return true;
             }
         });
     }
@@ -165,21 +198,105 @@ public class PokeTeamActivity extends AppCompatActivity {
 
     public void teamModify(int team) {
         int position = sharedPreferences.getInt("Team"+team, 0);
-        Log.d(TAG, "position "+position);
+
+        Log.d(TAG,"color: "+colorChangeType(pokeLists.get(position).getTypes()[0]));
         if(position !=0 ) {
             team--;
             position--;
+
+            int colors = Color.parseColor(getResources().getString(colorChangeType(pokeLists.get(position).getTypes()[0])));
+
             TeamName.get(team).setText(pokeLists.get(position).getName());
             TeamType1.get(team).setText(pokeLists.get(position).getTypes()[0]);
-            if (pokeLists.get(position).getTypes().length != 1) {
+            TeamType1.get(team).setBackgroundColor(colors);
+
+            if (!pokeLists.get(position).getTypes()[1].equals("none")) {
+
+                colors = Color.parseColor(getResources().getString(colorChangeType(pokeLists.get(position).getTypes()[1])));
+
                 TeamType2.get(team).setText(pokeLists.get(position).getTypes()[1]);
-            } else {
-                TeamType2.get(team).setVisibility(View.INVISIBLE);
+                TeamType2.get(team).setBackgroundColor(colors);
             }
+                else{
+                    TeamType2.get(team).setVisibility(View.INVISIBLE);
+                }
+
             Glide.with(getApplicationContext()).load(pokeLists.get(position).getSprite()).into(TeamIcon.get(team));
         }
         else {
             Log.d(TAG,"Not FOund");
         }
     }
+
+    public void longClick(int team) {
+        int position = sharedPreferences.getInt("Team"+team, 0);
+        Log.d(TAG, "position "+position);
+        if(position !=0 ) {
+            team--;
+            position--;
+            Intent intent = new Intent(PokeTeamActivity.this, PokeDetailActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+            intent.putExtra("pokemon", (Serializable) pokeLists.get(position));
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+    }
+
+        public int colorChangeType(String type) {
+            switch (type.toLowerCase().trim()) {
+                case "grass":
+                    return R.color.colorGrassType;
+
+                case "fire":
+                    return R.color.colorFireType;
+
+                case "water":
+                    return R.color.colorWaterType;
+
+                case "bug":
+                    return R.color.colorBugType;
+
+                case "normal":
+                    return R.color.colorNormalType;
+
+                case "poison":
+                    return R.color.colorPoisonType;
+
+                case "electric":
+                    return R.color.colorElectricType;
+
+                case "flying":
+                    return R.color.colorFlyingType;
+
+                case "ground":
+                    return R.color.colorGroundType;
+
+                case "fighting":
+                    return R.color.colorFightingType;
+
+                case "psychic":
+                    return R.color.colorPsychicType;
+
+                case "rock":
+                    return R.color.colorRockType;
+
+                case "ghost":
+                    return R.color.colorGhostType;
+
+                case "steel":
+                    return R.color.colorSteelType;
+
+                case "ice":
+                    return R.color.colorIceType;
+
+                case "dark":
+                    return R.color.colorDarkType;
+
+                case "dragon":
+                    return R.color.colorDragonType;
+
+                default:
+                    return R.color.Pink;
+            }
+        }
 }

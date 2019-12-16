@@ -3,6 +3,7 @@ package com.example.sheanwoey_yifan.Pokemon_List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,8 @@ import org.json.JSONTokener;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -44,7 +47,6 @@ public class PokemonListActivity extends AppCompatActivity {
     public static ArrayList<PokeDetail> pokeLists = new ArrayList<>();
     private PokemonListAdapter pokemonListAdapter;
     private ProgressDialog pDialog;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class PokemonListActivity extends AppCompatActivity {
                 intent.putExtra("team", (Serializable) pokeLists);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
             }
         });
     }
@@ -125,7 +129,7 @@ public class PokemonListActivity extends AppCompatActivity {
             pokeLists = result;
             Log.d(TAG, "pokeLists :" + pokeLists.size());
 
-            pokemonList.setLayoutManager(new AutoFitGridLayoutManager(getApplicationContext(), 280));
+            pokemonList.setLayoutManager(new AutoFitGridLayoutManager(getApplicationContext(), 300));
             pokemonList.setHasFixedSize(true);
             pokemonListAdapter = new PokemonListAdapter(getApplicationContext(), pokeLists);
             pokemonList.setAdapter(pokemonListAdapter);
@@ -176,6 +180,7 @@ public class PokemonListActivity extends AppCompatActivity {
                     PokeMove pokeMove = new PokeMove(moveName,pp,accuracy,damageClass,element,power,lvl);
                     pokeMoveList.add(pokeMove);
                 }
+                Collections.sort(pokeMoveList, new PokeMove.SortbyLv());
                 ArrayList<PokeEvolution> pokeEvolutions = new ArrayList<>();
                 JSONArray evolutionArray = responseArray.getJSONObject(i).getJSONArray("evolutions");
                 for (int j = 0; j < evolutionArray.length(); j++) {

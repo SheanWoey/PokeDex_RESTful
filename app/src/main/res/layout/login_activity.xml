@@ -21,8 +21,10 @@
 
         <ImageView
             android:id="@+id/header_icon"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintHeight_percent="0.2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/loading"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +47,7 @@
                 android:id="@+id/username"
                 style="@style/RegistrationEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -58,12 +60,12 @@
                 android:id="@+id/password"
                 style="@style/RegistrationEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:drawableLeft="@drawable/ic_lock_black_24dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColor="@color/WhiteSmoke"
                 android:textColorHint="@color/WhiteSmoke" />
@@ -88,7 +90,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="Register"
+                android:text="@string/need_to_register"
                 android:background="@drawable/button_enabled"/>
 
             <ProgressBar
@@ -117,12 +119,12 @@
                 android:id="@+id/userRegister"
                 style="@style/RegistrationEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:drawableLeft="@drawable/ic_person_black_24dp"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:textColor="@color/WhiteSmoke"
                 android:textColorHint="@color/WhiteSmoke" />
 
@@ -130,12 +132,12 @@
                 android:id="@+id/passRegister"
                 style="@style/RegistrationEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:drawableLeft="@drawable/ic_lock_black_24dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textColor="@color/WhiteSmoke"
                 android:textColorHint="@color/WhiteSmoke" />
@@ -149,7 +151,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:enabled="false"
-                android:text="Register"
+                android:text="@string/register"
                 android:background="@drawable/button_toggle"
                 android:textColor="@color/Black" />
 
@@ -161,7 +163,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="Login"
+                android:text="@string/already_have_account"
                 android:background="@drawable/button_enabled"
             android:textColor="@color/Black" />
 

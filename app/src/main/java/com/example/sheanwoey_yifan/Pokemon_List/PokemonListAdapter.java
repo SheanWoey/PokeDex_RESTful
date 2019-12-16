@@ -1,5 +1,6 @@
 package com.example.sheanwoey_yifan.Pokemon_List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -67,6 +68,7 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 intent.putExtra("pokemon", (Serializable) pokeDetails.get(position));
                 context.startActivity(intent);
+
             }
         });
     }

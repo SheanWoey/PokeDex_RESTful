@@ -60,8 +60,9 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 splash_content.setVisibility(View.GONE);
                 textView.setVisibility(View.GONE);
-                    Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
             }
 

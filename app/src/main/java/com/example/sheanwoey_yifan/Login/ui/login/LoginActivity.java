@@ -188,8 +188,10 @@ public class LoginActivity extends AppCompatActivity {
         String welcome = getString(R.string.welcome) +" "+ model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
+
         Intent intent = new Intent(LoginActivity.this, PokemonListActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

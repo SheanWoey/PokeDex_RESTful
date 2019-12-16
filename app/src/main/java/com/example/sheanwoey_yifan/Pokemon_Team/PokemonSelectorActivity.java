@@ -43,7 +43,7 @@ public class PokemonSelectorActivity extends AppCompatActivity {
 
         pokeLists = (ArrayList<PokeDetail>) getIntent().getSerializableExtra("team");
 
-        pokemonList.setLayoutManager(new AutoFitGridLayoutManager(getApplicationContext(), 280));
+        pokemonList.setLayoutManager(new AutoFitGridLayoutManager(getApplicationContext(), 300));
         pokemonList.setHasFixedSize(true);
         pokemonSelectorAdapter = new PokemonSelectorAdapter(getApplicationContext(), pokeLists);
         pokemonList.setAdapter(pokemonSelectorAdapter);
