@@ -46,12 +46,7 @@ public class registerTest {
 
     public void checkLoginButton() {
 
-        onView(withId(R.id.username))
-                .perform(typeText("User1"), closeSoftKeyboard());
 
-
-        onView(withId(R.id.password))
-                .perform(typeText("Passwrd"), closeSoftKeyboard());
 
         onView(withId(R.id.toggleRegister))
                 .perform(click());

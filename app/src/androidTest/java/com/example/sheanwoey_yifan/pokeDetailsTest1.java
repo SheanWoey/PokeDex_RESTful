@@ -29,37 +29,24 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class pokeDetailsTest {
+public class pokeDetailsTest1 {
 
     @Rule
     public ActivityTestRule<SplashScreenActivity> mActivityTestRule = new ActivityTestRule<>(SplashScreenActivity.class);
 
     @Test
-    public void pokeDetailsTest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.username),
-                        childAtPosition(
-                                allOf(withId(R.id.loginForm),
-                                        childAtPosition(
-                                                withId(R.id.activity_main),
-                                                1)),
-                                0),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("user"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                allOf(withId(R.id.loginForm),
-                                        childAtPosition(
-                                                withId(R.id.activity_main),
-                                                1)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("123456"), closeSoftKeyboard());
+    public void pokeDetailsTest1() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.toggleRegister), withText("Register"),
+                allOf(withId(R.id.toggleRegister), withText("Not yet Registered?"),
                         childAtPosition(
                                 allOf(withId(R.id.loginForm),
                                         childAtPosition(
@@ -69,7 +56,7 @@ public class pokeDetailsTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatEditText3 = onView(
+        ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.userRegister),
                         childAtPosition(
                                 allOf(withId(R.id.registerForm),
@@ -78,9 +65,9 @@ public class pokeDetailsTest {
                                                 2)),
                                 0),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("user"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("user1"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText4 = onView(
+        ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.passRegister),
                         childAtPosition(
                                 allOf(withId(R.id.registerForm),
@@ -89,7 +76,7 @@ public class pokeDetailsTest {
                                                 2)),
                                 1),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("123456"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("123456"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.register), withText("Register"),
@@ -102,6 +89,15 @@ public class pokeDetailsTest {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         ViewInteraction constraintLayout = onView(
                 allOf(withId(R.id.pokeContainer),
                         childAtPosition(
@@ -112,6 +108,15 @@ public class pokeDetailsTest {
                                 0),
                         isDisplayed()));
         constraintLayout.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction bottomNavigationItemView = onView(
                 allOf(withId(R.id.navigation_skills), withContentDescription("Skills"),

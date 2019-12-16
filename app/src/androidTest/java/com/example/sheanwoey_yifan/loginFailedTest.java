@@ -56,7 +56,7 @@ public class loginFailedTest {
         onView(withId(R.id.login))
                 .perform(click());
 
-         onView(withText(R.string.login_failed)).inRoot(withDecorView(not(mActivityTestRule.getActivity().getWindow().getDecorView()))) .check(matches(isDisplayed()));
+         onView(withText("Invalid User")).inRoot(withDecorView(not(mActivityTestRule.getActivity().getWindow().getDecorView()))) .check(matches(isDisplayed()));
 
 
 
