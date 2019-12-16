@@ -64,12 +64,7 @@ public class PokeDetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.d(TAG,"onBackPressed");
-        if(getFragmentManager().getBackStackEntryCount() == 0) {
-            super.onBackPressed();
-        }
-        else {
-            getFragmentManager().popBackStack();
-        }
+        finish();
     }
 
     @Override
