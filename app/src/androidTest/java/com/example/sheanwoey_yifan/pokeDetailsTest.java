@@ -18,10 +18,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -31,7 +29,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class PokeDetailsTest {
+public class pokeDetailsTest {
 
     @Rule
     public ActivityTestRule<SplashScreenActivity> mActivityTestRule = new ActivityTestRule<>(SplashScreenActivity.class);
@@ -41,52 +39,68 @@ public class PokeDetailsTest {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_container),
-                                        0),
+                                allOf(withId(R.id.loginForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                1)),
                                 0),
                         isDisplayed()));
-        appCompatEditText.perform(click());
+        appCompatEditText.perform(replaceText("user"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.username),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_container),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText2.perform(replaceText("user1"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.password),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_container),
-                                        0),
+                                allOf(withId(R.id.loginForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                1)),
                                 1),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("1q234w"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.password), withText("1q234w"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_container),
-                                        0),
-                                1),
-                        isDisplayed()));
-
+        appCompatEditText2.perform(replaceText("123456"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.login), withText("Log in"),
+                allOf(withId(R.id.toggleRegister), withText("Register"),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.login_container),
-                                        0),
-                                2),
+                                allOf(withId(R.id.loginForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                1)),
+                                3),
                         isDisplayed()));
         appCompatButton.perform(click());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.userRegister),
+                        childAtPosition(
+                                allOf(withId(R.id.registerForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                2)),
+                                0),
+                        isDisplayed()));
+        appCompatEditText3.perform(replaceText("user"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.passRegister),
+                        childAtPosition(
+                                allOf(withId(R.id.registerForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                2)),
+                                1),
+                        isDisplayed()));
+        appCompatEditText4.perform(replaceText("123456"), closeSoftKeyboard());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.register), withText("Register"),
+                        childAtPosition(
+                                allOf(withId(R.id.registerForm),
+                                        childAtPosition(
+                                                withId(R.id.activity_main),
+                                                2)),
+                                2),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
 
         ViewInteraction constraintLayout = onView(
                 allOf(withId(R.id.pokeContainer),
