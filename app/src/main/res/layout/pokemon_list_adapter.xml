@@ -11,19 +11,16 @@
 
     <ImageView
         android:id="@+id/pokeIcon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_vertical|center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintBottom_toTopOf="@+id/pokeName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.6"
-        app:srcCompat="@drawable/loading"
-
-        />
+        app:srcCompat="@drawable/loading" />
 
     <TextView
         android:id="@+id/pokeName"
@@ -43,12 +40,11 @@
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokeIcon"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/pokeName">
 
         <TextView
             android:id="@+id/pokeType1"
@@ -63,12 +59,12 @@
 
         <TextView
             android:id="@+id/pokeType2"
-            android:background="@drawable/round_square"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_below="@+id/pokeType1"
             android:layout_marginBottom="16dp"
             android:layout_toRightOf="@+id/pokeType1"
+            android:background="@drawable/round_square"
             android:padding="4dp"
             android:text="Button"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"

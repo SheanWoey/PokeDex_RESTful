@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sheanwoey_yifan.Login.ui.login.LoginActivity;
+import com.example.sheanwoey_yifan.Login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

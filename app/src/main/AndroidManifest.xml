@@ -21,6 +21,7 @@
         <activity
             android:name=".Login.ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Pokemon_Detail.PokeDetailActivity" />
         <activity android:name=".Pokemon_List.PokemonListActivity" />
         <activity android:name=".SplashScreenActivity">
