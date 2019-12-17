@@ -113,7 +113,7 @@ public class PokeTeamActivity extends AppCompatActivity {
         team1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                longClick(1);
+                alertDialog(1);
                 return true;
             }
         });
@@ -136,7 +136,7 @@ public class PokeTeamActivity extends AppCompatActivity {
         team2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                longClick(2);
+                alertDialog(2);
                 return true;
             }
         });
@@ -177,7 +177,7 @@ public class PokeTeamActivity extends AppCompatActivity {
         team4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                longClick(4);
+                alertDialog(4);
                 return true;
             }
         });

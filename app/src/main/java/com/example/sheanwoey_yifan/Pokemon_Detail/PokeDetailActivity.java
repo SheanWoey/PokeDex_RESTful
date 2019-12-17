@@ -156,7 +156,7 @@ public class PokeDetailActivity extends AppCompatActivity {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "CHANNEL_ID");
                 builder.setContentTitle("Picture Download")
-                        .setContentText("Download in progress")
+                        .setContentText("Download Completed")
                         .setSmallIcon(R.drawable.loading)
                         .setPriority(NotificationCompat.PRIORITY_LOW)
                         .build();
